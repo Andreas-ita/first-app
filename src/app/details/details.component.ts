@@ -32,7 +32,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
                     <input id="first-name" type="text" formControlName="firstName">
 
                     <label for="last-name">Last Name</label>
-                    <input id="Last-name" type="text" formControlName="lastName">
+                    <input id="last-name" type="text" formControlName="lastName">
 
                     <label for="email">Email</label>
                     <input id="email" type="email" formControlName="email">
@@ -47,6 +47,7 @@ export class DetailsComponent {
     route: ActivatedRoute = inject(ActivatedRoute);
     housingService = inject(HousingService);
     housingLocation: HousingLocation | undefined;
+
     applyForm = new FormGroup({
         firstName: new FormControl(''),
         lastName: new FormControl(''),
@@ -58,6 +59,7 @@ export class DetailsComponent {
         this.housingService.getHousingLocationById(housingLocationId).then(housingLocation => {
             this.housingLocation = housingLocation;
         });
+    }
 
         submitApplication() {
             this.housingService.submitApplication(
@@ -67,4 +69,3 @@ export class DetailsComponent {
             );
         }
     }
-}
