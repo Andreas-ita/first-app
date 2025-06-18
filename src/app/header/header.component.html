@@ -1,0 +1,25 @@
+<header class="main-header">
+    <div class="container">
+        <a [routerLink]="['/']" class="logo">
+            <img src="/assets/logo.svg" alt="Site Logo" />
+        </a>
+
+        <nav class="nav-links" [class.open]="isMenuOpen">
+            <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+            <a [routerLink]="['/locations']" routerLinkActive="active">Locations</a>
+            <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+            <a [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
+            <a [routerLink]="['/Details/0']" routerLinkActive="active">Details</a>
+        </nav>
+
+        <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
