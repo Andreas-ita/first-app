@@ -1,5 +1,5 @@
 .main-header {
-    background-color: #000;
+    background: linear-gradient(to bottom, #1b1b1b 0%, #111 100%);
     color: #fff;
     border-bottom: 1px solid #ddd;
     padding: 0.5rem 1rem;

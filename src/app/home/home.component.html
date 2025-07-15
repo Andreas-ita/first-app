@@ -1,8 +1,19 @@
-<section>
+<section class="search-bar">
     <form>
-        <input type="text" placeholder="Filter by city" #filter />
+        <input type="text" placeholder="Filter by your item" #filter />
         <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
     </form>
+</section>
+<section class="carousel-wrapper">
+    <button class="carousel-btn left" (click)="scrollCarousel('left')">&#8592;</button>
+
+    <div class="carousel" #carousel>
+        <div class="carousel-item" *ngFor="let item of carouselItems">
+            {{ item }}
+        </div>
+    </div>
+
+    <button class="carousel-btn right" (click)="scrollCarousel('right')">&#8594;</button>
 </section>
 <section class="results">
     <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation"></app-housing-location>
