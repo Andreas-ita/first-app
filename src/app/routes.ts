@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { provideRouter } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
+import { LoginComponent } from './login/login.component';
 
 const routeConfig: Routes = [
     {
@@ -14,7 +15,12 @@ const routeConfig: Routes = [
     {
         path: 'Details/:id',
         component: DetailsComponent,
-        title: 'details Page',
+        title: 'Details Page',
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        title: 'Login Page'
     },
     {
         path: '**',

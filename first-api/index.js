@@ -2,9 +2,11 @@ const express = require('express');
 const sql = require('mssql');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 3001;
+const JWT_SECRET = 'StrongPassword123!'; //for production to be stored in a .env file using dotenv
 
 // Middleware
 app.use(cors({ origin: 'http://localhost:4200' }));
@@ -12,14 +14,15 @@ app.use(express.json());
 
 // MSSQL Configuration
 const dbConfig = {
-    user: 'sa', // Replace with your SQL Server username or use Windows Authentication
-    password: 'Scrypt0#400p200', // Replace with your SQL Server password
-
+    user: 'adm',
+    password: 'StrongPassword123!',
     server: 'localhost',
     database: 'FirstAppDB',
+
     options: {
-        encrypt: false,
-        trustServerCertificate: false
+        encrypt: false, // Set to false for local Windows Authentication
+        trustServerCertificate: true, // Set to true for local development
+        //trustedConnection: true // Ensures Windows Authentication
     }
 };
 
@@ -49,13 +52,13 @@ app.post('/api/auth/register', async (req, res) => {
             .query('INSERT INTO Users (Username, Email, PasswordHash) VALUES (@username, @email, @passwordHash)');
 
         res.status(200).json({ message: 'User registered successfully' });
-    } catch (error) {
+    }l catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 });
 
-// Login Endpoint
+// Login Endpoint with JWT
 app.post('/api/auth/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -73,10 +76,28 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
 
-        res.status(200).json({ userId: user.UserID, username: user.Username, email: user.Email });
+        // Generate JWT
+        const token = jwt.sign(
+            { userId: user.UserID, username: user.Username, email: user.Email },
+            JWT_SECRET,
+            { expiresIn: '1h' } // Token expires in 1 hour
+        );
+
+        res.status(200).json({ userId: user.UserID, username: user.Username, email: user.Email, token: token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
+    }
+});
+
+//testing db conn can remove later
+app.get('/test-db', async (req, res) => {
+    try {
+        const pool = await sql.connect(dbConfig);
+        res.status(200).json({ message: 'Database connection successful' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Database connection failed', details: error.message });
     }
 });
 
