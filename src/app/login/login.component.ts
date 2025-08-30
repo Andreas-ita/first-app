@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -6,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, CommonModule, ReactiveFormsModule],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })

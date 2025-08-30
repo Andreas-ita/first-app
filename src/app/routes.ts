@@ -5,6 +5,7 @@ import { provideRouter } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './auth.guard';
 
 const routeConfig: Routes = [
     {
@@ -16,6 +17,7 @@ const routeConfig: Routes = [
         path: 'Details/:id',
         component: DetailsComponent,
         title: 'Details Page',
+        canActivate: [authGuard]
     },
     {
         path: 'login',

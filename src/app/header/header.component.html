@@ -11,12 +11,18 @@
             <a [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
             <a [routerLink]="['/Details/0']" routerLinkActive="active">Details</a>
         </nav>
-
-        <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <nav>
+            <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul [ngClass]="{'open': isMenuOpen}">
+                <li><a routerLink="/">Home</a></li>
+                <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
+                <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
+            </ul>
+        </nav>
     </div>
 </header>
 

@@ -93,3 +93,11 @@
     .nav-links a:hover {
         color: #00e0ff;
     }
+
+nav ul {
+    display: none;
+}
+
+    nav ul.open {
+        display: block;
+    }

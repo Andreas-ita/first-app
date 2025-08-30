@@ -52,7 +52,7 @@ app.post('/api/auth/register', async (req, res) => {
             .query('INSERT INTO Users (Username, Email, PasswordHash) VALUES (@username, @email, @passwordHash)');
 
         res.status(200).json({ message: 'User registered successfully' });
-    }l catch (error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
@@ -88,6 +88,26 @@ app.post('/api/auth/login', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
+});
+
+// Middleware to verify JWT
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ error: 'No token provided' });
+    }
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        res.status(401).json({ error: 'Invalid token' });
+    }
+};
+
+// Protected betting endpoint
+app.get('/api/bets', verifyToken, (req, res) => {
+    res.status(200).json({ message: `Welcome ${req.user.username}, here are your bets` });
 });
 
 //testing db conn can remove later

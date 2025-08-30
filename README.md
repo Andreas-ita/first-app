@@ -1,4 +1,4 @@
-# Angular Homes App
+# Angular First App
 - Install Angular if you don't have it installed
 
   `npm install -g @angular/cli`
@@ -18,3 +18,16 @@
 - Run the application 
 
   `ng serve`
+
+- install json web token with node package manager
+
+ `npm install jsonwebtoken`
+
+- Startup index.js for auth endpoints and DB connections, first change dir to first-api then run
+
+`cd first-api`
+`node.js`
+
+- - Run serve db.json for house list details, can be removed later
+
+`json-server --watch db.json`
