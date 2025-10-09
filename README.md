@@ -26,8 +26,10 @@
 - Startup index.js for auth endpoints and DB connections, first change dir to first-api then run
 
 `cd first-api`
-`node.js`
+`index.js`
 
 - - Run serve db.json for house list details, can be removed later
 
 `json-server --watch db.json`
+
+- - SQL server sa account P@ssw0rd123!
