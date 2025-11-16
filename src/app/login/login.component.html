@@ -1,4 +1,4 @@
-<div>
+<div class="login-container">
     <h2>Login</h2>
     <form (ngSubmit)="onSubmit()">
         <div>
@@ -9,7 +9,8 @@
             <label>Password:</label>
             <input [(ngModel)]="loginModel.password" type="password" name="password" required>
         </div>
-        <button type="submit">Login</button>
+        <button class="primary" type="submit">Login</button>
+        <br />
         <div *ngIf="errorMessage" style="color: red;">
             {{ errorMessage }}
         </div>

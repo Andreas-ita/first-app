@@ -33,3 +33,4 @@
 `json-server --watch db.json`
 
 - - SQL server sa account P@ssw0rd123!
+`node index.js`
