@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-    registerModel = { username: '', email: '', password: '' };
+    registerModel = { email: '', password: '' };
     message: string = '';
 
     constructor(private http: HttpClient) { }
@@ -24,7 +24,7 @@ export class RegisterComponent {
             .subscribe({
                 next: (response: any) => {
                     this.message = response.message;
-                    this.registerModel = { username: '', email: '', password: '' };
+                    this.registerModel = { email: '', password: '' };
                 },
                 error: (error) => {
                     this.message = error.error?.error || 'Registration failed';

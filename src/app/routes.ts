@@ -5,7 +5,6 @@ import { provideRouter } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { authGuard } from './auth.guard';
 import { RegisterComponent } from './register/register.component';
 
@@ -26,6 +25,11 @@ const routeConfig: Routes = [
         path: 'login',
         component: LoginComponent,
         title: 'Login Page'
+    },
+    {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'Registration Page'
     },
     {
         path: '**',
