@@ -7,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-register',
+    standalone: true,
     imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterModule],
-
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 
