@@ -1,7 +1,7 @@
 <section class="search-bar">
     <form>
         <input type="text" placeholder="Filter by your item" #filter />
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+        <button class="primary" type="button">Search</button>
     </form>
 </section>
 <section class="carousel-wrapper">
@@ -14,7 +14,4 @@
     </div>
 
     <button class="carousel-btn right" (click)="scrollCarousel('right')">&#8594;</button>
-</section>
-<section class="results">
-    <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation"></app-housing-location>
 </section>

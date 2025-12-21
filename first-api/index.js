@@ -15,7 +15,7 @@ app.use(express.json());
 // MSSQL Configuration
 const dbConfig = {
     user: 'adm',
-    password: 'StrongPassword123!',
+    password: 'StrongPassword123!/',
     server: 'localhost',
     database: 'FirstAppDB',
 
@@ -63,13 +63,13 @@ app.post('/api/auth/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
-            return res.status(400).json({ error: 'Username and password are required' });
+            return res.status(400).json({ error: 'username and password are required' });
         }
 
         const pool = await sql.connect(dbConfig);
         const result = await pool.request()
             .input('username', sql.NVarChar, username)
-            .query('SELECT * FROM Users WHERE Username = @username');
+            .query('SELECT * FROM Users WHERE username = @username');
 
         const user = result.recordset[0];
         if (!user || !(await bcrypt.compare(password, user.PasswordHash))) {
@@ -107,7 +107,7 @@ const verifyToken = (req, res, next) => {
 
 // Protected betting endpoint
 app.get('/api/bets', verifyToken, (req, res) => {
-    res.status(200).json({ message: `Welcome ${req.user.username}, here are your bets` });
+    res.status(200).json({ message: `Welcome ${req.user.email}, here are your bets` });
 });
 
 //testing db conn can remove later
@@ -121,7 +121,7 @@ app.get('/test-db', async (req, res) => {
     }
 });
 
-// Start Server
+// Start json Server for db connection
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

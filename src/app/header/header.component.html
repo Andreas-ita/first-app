@@ -6,10 +6,8 @@
 
         <nav class="nav-links" [class.open]="isMenuOpen">
             <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-            <a [routerLink]="['/locations']" routerLinkActive="active">Locations</a>
+            <a *ngIf="authService.isLoggedIn()" [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
             <a [routerLink]="['/about']" routerLinkActive="active">About</a>
-            <a [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
-            <a [routerLink]="['/Details/0']" routerLinkActive="active">Login</a>
         </nav>
         <nav>
             <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
@@ -19,13 +17,12 @@
             </button>
             <ul [ngClass]="{'open': isMenuOpen}">
                 <li><a routerLink="/">Home</a></li>
+                <li *ngIf="authService.isLoggedIn()"><a routerLink="/profile">Profile</a></li>
+                <li><a routerLink="/about">About</a></li>
+                <li *ngIf="!authService.isLoggedIn()"><a routerLink="/register">Register</a></li>
                 <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
                 <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
             </ul>
         </nav>
     </div>
 </header>
-
-<main>
-    <router-outlet></router-outlet>
-</main>
