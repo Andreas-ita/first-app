@@ -50,3 +50,10 @@ Set TCP Port to 1433.
 Click OK.
 
 Restart SQL Server Service SQL Server (mssqlserver)
+
+*********************
+https://betway.com/
+https://jsbsports.bet/sports
+https://interbet.co.za/
+https://classicsbet.com/sportsbook
+*********************

@@ -1,13 +1,14 @@
 <header class="main-header">
     <div class="container">
         <a [routerLink]="['/']" class="logo">
-            <img src="/assets/logo.svg" alt="Site Logo" />
+            <img src="/assets/logoT.png" alt="Site Logo" />
         </a>
-
         <nav class="nav-links" [class.open]="isMenuOpen">
             <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-            <a *ngIf="authService.isLoggedIn()" [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
+            <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+            <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/register']" routerLinkActive="active">Register</a>
             <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+            <a *ngIf="authService.isLoggedIn()" [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
         </nav>
         <nav>
             <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
@@ -17,10 +18,10 @@
             </button>
             <ul [ngClass]="{'open': isMenuOpen}">
                 <li><a routerLink="/">Home</a></li>
-                <li *ngIf="authService.isLoggedIn()"><a routerLink="/profile">Profile</a></li>
-                <li><a routerLink="/about">About</a></li>
-                <li *ngIf="!authService.isLoggedIn()"><a routerLink="/register">Register</a></li>
                 <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
+                <li *ngIf="!authService.isLoggedIn()"><a routerLink="/register">Register</a></li>
+                <li><a routerLink="/about">About</a></li>
+                <li *ngIf="authService.isLoggedIn()"><a routerLink="/profile">Profile</a></li>
                 <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
             </ul>
         </nav>
